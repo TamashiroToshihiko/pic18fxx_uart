@@ -1,0 +1,1430 @@
+Disassembly Listing for test_16asm
+Generated From:
+C:/Users/tama_/MPLABXProjects/test_16asm.X/test_16asm.X/dist/default/production/test_16asm.X.production.elf
+2020/04/23 22:21:34
+
+---  C:/Users/tama_/MPLABXProjects/test_16asm.X/test_16asm.X/main.c  ------------------------------------
+1:             /*
+2:              * File:   main.c
+3:              * Author: ttama
+4:              *
+5:              * Created on July 2, 2019, 1:26 PM
+6:              */
+7:             
+8:             #define _XTAL_FREQ 64000000
+9:             #include "system.h"
+10:            
+11:            //----------------------------
+12:            static void CLOCK_Initialize(void);
+13:            extern int function(int,int);
+14:            
+15:            void Initialize_task()
+18E8  EC77     CALL 0x18EE, 0
+18EA  F00C     NOP
+16:            {
+17:                CLOCK_Initialize();
+18:            }
+18EC  0012     RETURN 0
+19:            char data[10];
+20:            
+21:            int main(void) {
+11EA  EC74     CALL 0x18E8, 0
+11EC  F00C     NOP
+11EE  ECC3     CALL 0x1786, 0
+11F0  F00B     NOP
+22:                set_up();
+23:                Serial.begin(9600);
+11F2  0E80     MOVLW 0x80
+11F4  6E14     MOVWF baud_rate, ACCESS
+11F6  0E25     MOVLW 0x25
+11F8  6E15     MOVWF 0x15, ACCESS
+11FA  0E00     MOVLW 0x0
+11FC  6E16     MOVWF 0x16, ACCESS
+11FE  0E00     MOVLW 0x0
+1200  6E17     MOVWF 0x17, ACCESS
+1202  EE2E     LFSR 2, 0xE49
+1204  F049     NOP
+1206  D802     RCALL 0x120C
+1208  EF10     GOTO 0x1220
+120A  F009     NOP
+120C  0005     PUSH
+120E  6EFA     MOVWF PCLATH, ACCESS
+1210  50DE     MOVF POSTINC2, W, ACCESS
+1212  6EFD     MOVWF TOS, ACCESS
+1214  50DE     MOVF POSTINC2, W, ACCESS
+1216  6EFE     MOVWF TOSH, ACCESS
+1218  50F8     MOVF TBLPTRU, W, ACCESS
+121A  6EFF     MOVWF TOSU, ACCESS
+121C  50FA     MOVF PCLATH, W, ACCESS
+121E  0012     RETURN 0
+24:                TRISCbits.TRISC7 = 1;
+1220  8E94     BSF TRISC, 7, ACCESS
+25:                TRISCbits.TRISC6 = 0;
+1222  9C94     BCF TRISC, 6, ACCESS
+1224  EF14     GOTO 0x1228
+1226  F009     NOP
+26:                while(1)
+1228  0E10     MOVLW 0x10
+122A  6E0A     MOVWF data_buf, ACCESS
+122C  0E10     MOVLW 0x10
+122E  6E0B     MOVWF 0xB, ACCESS
+1230  EE2E     LFSR 2, 0xE4F
+1232  F04F     NOP
+1234  D802     RCALL 0x123A
+1236  EF27     GOTO 0x124E
+1238  F009     NOP
+123A  0005     PUSH
+123C  6EFA     MOVWF PCLATH, ACCESS
+123E  50DE     MOVF POSTINC2, W, ACCESS
+1240  6EFD     MOVWF TOS, ACCESS
+1242  50DE     MOVF POSTINC2, W, ACCESS
+1244  6EFE     MOVWF TOSH, ACCESS
+1246  50F8     MOVF TBLPTRU, W, ACCESS
+1248  6EFF     MOVWF TOSU, ACCESS
+124A  50FA     MOVF PCLATH, W, ACCESS
+124C  0012     RETURN 0
+27:                {
+28:                    Serial.println("TAMASHIRO!!");
+29:                    if(Serial.available()>5)
+124E  EE2E     LFSR 2, 0xE51
+1250  F051     NOP
+1252  D802     RCALL 0x1258
+1254  EF36     GOTO 0x126C
+1256  F009     NOP
+1258  0005     PUSH
+125A  6EFA     MOVWF PCLATH, ACCESS
+125C  50DE     MOVF POSTINC2, W, ACCESS
+125E  6EFD     MOVWF TOS, ACCESS
+1260  50DE     MOVF POSTINC2, W, ACCESS
+1262  6EFE     MOVWF TOSH, ACCESS
+1264  50F8     MOVF TBLPTRU, W, ACCESS
+1266  6EFF     MOVWF TOSU, ACCESS
+1268  50FA     MOVF PCLATH, W, ACCESS
+126A  0012     RETURN 0
+126C  BE07     BTFSC 0x7, 7, ACCESS
+126E  EF42     GOTO 0x1284
+1270  F009     NOP
+1272  5007     MOVF 0x7, W, ACCESS
+1274  E109     BNZ 0x1288
+1276  0E06     MOVLW 0x6
+1278  5C06     SUBWF read_buf, W, ACCESS
+127A  A0D8     BTFSS STATUS, 0, ACCESS
+127C  EF42     GOTO 0x1284
+127E  F009     NOP
+1280  EF44     GOTO 0x1288
+1282  F009     NOP
+1284  EF81     GOTO 0x1302
+1286  F009     NOP
+30:                    {
+31:                        Serial.read(data,5);
+1288  0E27     MOVLW 0x27
+128A  6E06     MOVWF read_buf, ACCESS
+128C  0E00     MOVLW 0x0
+128E  6E07     MOVWF 0x7, ACCESS
+1290  0E05     MOVLW 0x5
+1292  6E08     MOVWF read_len, ACCESS
+1294  EE2E     LFSR 2, 0xE53
+1296  F053     NOP
+1298  D802     RCALL 0x129E
+129A  EF59     GOTO 0x12B2
+129C  F009     NOP
+129E  0005     PUSH
+12A0  6EFA     MOVWF PCLATH, ACCESS
+12A2  50DE     MOVF POSTINC2, W, ACCESS
+12A4  6EFD     MOVWF TOS, ACCESS
+12A6  50DE     MOVF POSTINC2, W, ACCESS
+12A8  6EFE     MOVWF TOSH, ACCESS
+12AA  50F8     MOVF TBLPTRU, W, ACCESS
+12AC  6EFF     MOVWF TOSU, ACCESS
+12AE  50FA     MOVF PCLATH, W, ACCESS
+12B0  0012     RETURN 0
+32:                        Serial.print("READ = ");
+12B2  0E1C     MOVLW 0x1C
+12B4  6E06     MOVWF read_buf, ACCESS
+12B6  0E10     MOVLW 0x10
+12B8  6E07     MOVWF 0x7, ACCESS
+12BA  EE2E     LFSR 2, 0xE4D
+12BC  F04D     NOP
+12BE  D802     RCALL 0x12C4
+12C0  EF6C     GOTO 0x12D8
+12C2  F009     NOP
+12C4  0005     PUSH
+12C6  6EFA     MOVWF PCLATH, ACCESS
+12C8  50DE     MOVF POSTINC2, W, ACCESS
+12CA  6EFD     MOVWF TOS, ACCESS
+12CC  50DE     MOVF POSTINC2, W, ACCESS
+12CE  6EFE     MOVWF TOSH, ACCESS
+12D0  50F8     MOVF TBLPTRU, W, ACCESS
+12D2  6EFF     MOVWF TOSU, ACCESS
+12D4  50FA     MOVF PCLATH, W, ACCESS
+12D6  0012     RETURN 0
+33:                        Serial.println(data);
+12D8  0E27     MOVLW 0x27
+12DA  6E0A     MOVWF data_buf, ACCESS
+12DC  0E00     MOVLW 0x0
+12DE  6E0B     MOVWF 0xB, ACCESS
+12E0  EE2E     LFSR 2, 0xE4F
+12E2  F04F     NOP
+12E4  D802     RCALL 0x12EA
+12E6  EF7F     GOTO 0x12FE
+12E8  F009     NOP
+12EA  0005     PUSH
+12EC  6EFA     MOVWF PCLATH, ACCESS
+12EE  50DE     MOVF POSTINC2, W, ACCESS
+12F0  6EFD     MOVWF TOS, ACCESS
+12F2  50DE     MOVF POSTINC2, W, ACCESS
+12F4  6EFE     MOVWF TOSH, ACCESS
+12F6  50F8     MOVF TBLPTRU, W, ACCESS
+12F8  6EFF     MOVWF TOSU, ACCESS
+12FA  50FA     MOVF PCLATH, W, ACCESS
+12FC  0012     RETURN 0
+12FE  EF81     GOTO 0x1302
+1300  F009     NOP
+34:                        
+35:                    }
+1302  0E01     MOVLW 0x1
+1304  6E0A     MOVWF data_buf, ACCESS
+1306  0E10     MOVLW 0x10
+1308  6E0B     MOVWF 0xB, ACCESS
+130A  EE2E     LFSR 2, 0xE4F
+130C  F04F     NOP
+130E  D802     RCALL 0x1314
+1310  EF94     GOTO 0x1328
+1312  F009     NOP
+1314  0005     PUSH
+1316  6EFA     MOVWF PCLATH, ACCESS
+1318  50DE     MOVF POSTINC2, W, ACCESS
+131A  6EFD     MOVWF TOS, ACCESS
+131C  50DE     MOVF POSTINC2, W, ACCESS
+131E  6EFE     MOVWF TOSH, ACCESS
+1320  50F8     MOVF TBLPTRU, W, ACCESS
+1322  6EFF     MOVWF TOSU, ACCESS
+1324  50FA     MOVF PCLATH, W, ACCESS
+1326  0012     RETURN 0
+36:                    Serial.println("hello world1!!");
+37:                    __delay_ms(1000);
+1328  0E52     MOVLW 0x52
+132A  6E1F     MOVWF 0x1F, ACCESS
+132C  0E2B     MOVLW 0x2B
+132E  6E1E     MOVWF 0x1E, ACCESS
+1330  0E00     MOVLW 0x0
+1332  2EE8     DECFSZ WREG, F, ACCESS
+1334  D7FE     BRA 0x1332
+1336  2E1E     DECFSZ 0x1E, F, ACCESS
+1338  D7FC     BRA 0x1332
+133A  2E1F     DECFSZ 0x1F, F, ACCESS
+133C  D7FA     BRA 0x1332
+133E  F000     NOP
+1340  F000     NOP
+1342  EF14     GOTO 0x1228
+1344  F009     NOP
+38:                }
+1346  EF14     GOTO 0x1228
+1348  F009     NOP
+39:            }
+134A  EF19     GOTO 0x32
+134C  F000     NOP
+40:            static void CLOCK_Initialize(void)
+18EE  0012     RETURN 0
+41:            {
+42:              
+43:            }
+0008  8231     BSF btemp, 1, ACCESS
+1:             /*
+2:              * File:   interrupt.c
+3:              * Author: ttama
+4:              *
+5:              * Created on 2020/02/08, 14:19
+6:              */
+7:             
+8:             
+9:             #include "system.h"
+10:            
+11:            void __interrupt () my_isr_routine (void)
+0008  8231     BSF btemp, 1, ACCESS
+000A  CFD9     MOVFF FSR2, 0x2
+000C  F002     NOP
+000E  CFDA     MOVFF FSR2H, 0x3
+0010  F003     NOP
+0012  CFF3     MOVFF PROD, 0x4
+0014  F004     NOP
+0016  CFF4     MOVFF PRODH, 0x5
+0018  F005     NOP
+12:            {
+13:                _UART_INTERRUPT_TASK();
+001A  EC13     CALL 0x1026, 0
+001C  F008     NOP
+14:                
+15:            }
+001E  C005     MOVFF 0x5, PRODH
+0020  FFF4     NOP
+0022  C004     MOVFF 0x4, PROD
+0024  FFF3     NOP
+0026  C003     MOVFF 0x3, FSR2H
+0028  FFDA     NOP
+002A  C002     MOVFF 0x2, FSR2
+002C  FFD9     NOP
+002E  9231     BCF btemp, 1, ACCESS
+0030  0011     RETFIE 1
+---  C:/Users/tama_/MPLABXProjects/test_16asm.X/test_16asm.X/Serial.c  ----------------------------------
+1:             /*
+2:              * File:   Serial.c
+3:              * Author: ttama
+4:              *
+5:              * Created on 2020/02/08, 10:10
+6:              */
+7:             
+8:             
+9:             #include <xc.h>
+10:            #include "system.h"
+11:            
+12:            static char buffer_over     = 0;
+13:            static char buffer_over_cnt = 0;
+14:            static char send_cnt        = 0;
+15:            void Serial_init(void)
+1786  0E0A     MOVLW 0xA
+1788  CFE8     MOVFF WREG, Serial
+178A  FE49     NOP
+178C  0E17     MOVLW 0x17
+178E  CFE8     MOVFF WREG, 0xE4A
+1790  FE4A     NOP
+16:            {
+17:                Serial.begin     = begin;
+18:                Serial.available = available;
+1792  0E6A     MOVLW 0x6A
+1794  CFE8     MOVFF WREG, 0xE51
+1796  FE51     NOP
+1798  0E18     MOVLW 0x18
+179A  CFE8     MOVFF WREG, 0xE52
+179C  FE52     NOP
+19:                Serial.print     = print;
+179E  0E9A     MOVLW 0x9A
+17A0  CFE8     MOVFF WREG, 0xE4D
+17A2  FE4D     NOP
+17A4  0E14     MOVLW 0x14
+17A6  CFE8     MOVFF WREG, 0xE4E
+17A8  FE4E     NOP
+20:                Serial.println   = println;
+17AA  0E02     MOVLW 0x2
+17AC  CFE8     MOVFF WREG, 0xE4F
+17AE  FE4F     NOP
+17B0  0E18     MOVLW 0x18
+17B2  CFE8     MOVFF WREG, 0xE50
+17B4  FE50     NOP
+21:                Serial.read      = read;
+17B6  0E4E     MOVLW 0x4E
+17B8  CFE8     MOVFF WREG, 0xE53
+17BA  FE53     NOP
+17BC  0E13     MOVLW 0x13
+17BE  CFE8     MOVFF WREG, 0xE54
+17C0  FE54     NOP
+22:                Serial.write     = write;
+17C2  0ECA     MOVLW 0xCA
+17C4  CFE8     MOVFF WREG, 0xE4B
+17C6  FE4B     NOP
+17C8  0E18     MOVLW 0x18
+17CA  CFE8     MOVFF WREG, 0xE4C
+17CC  FE4C     NOP
+23:                Serial.variable.read_data_length = 0;
+17CE  0E00     MOVLW 0x0
+17D0  CFE8     MOVFF WREG, 0xED7
+17D2  FED7     NOP
+24:                Serial.variable.send_data_length = 0;
+17D4  0E00     MOVLW 0x0
+17D6  CFE8     MOVFF WREG, 0xF5D
+17D8  FF5D     NOP
+25:                Serial.variable.read_buffer_select = buffer_select_A;
+17DA  0E00     MOVLW 0x0
+17DC  CFE8     MOVFF WREG, 0xED8
+17DE  FED8     NOP
+26:                Serial.variable.send_buffer_select = buffer_select_A;
+17E0  0E00     MOVLW 0x0
+17E2  CFE8     MOVFF WREG, 0xF5C
+17E4  FF5C     NOP
+27:                if(INTCONbits.GIE == 0)
+17E6  BEF2     BTFSC INTCON, 7, ACCESS
+17E8  EFF8     GOTO 0x17F0
+17EA  F00B     NOP
+17EC  EFFA     GOTO 0x17F4
+17EE  F00B     NOP
+17F0  EFFC     GOTO 0x17F8
+17F2  F00B     NOP
+28:                {
+29:                    INTCONbits.GIE  = 1;
+17F4  8EF2     BSF INTCON, 7, ACCESS
+30:                    INTCONbits.PEIE = 1;
+17F6  8CF2     BSF INTCON, 6, ACCESS
+31:                }
+17F8  9A9E     BCF PIR1, 5, ACCESS
+32:                PIR1bits.RCIF = 0;
+33:                PIR1bits.TXIF = 0;
+17FA  989E     BCF PIR1, 4, ACCESS
+34:                PIE1bits.TXIE = 0;
+17FC  989D     BCF PIE1, 4, ACCESS
+35:                PIE1bits.RCIE = 1;
+17FE  8A9D     BSF PIE1, 5, ACCESS
+36:            }
+1800  0012     RETURN 0
+37:            static void begin(long baud_rate)
+170A  0E00     MOVLW 0x0
+170C  6EB8     MOVWF BAUDCON, ACCESS
+38:            {
+39:                unsigned short int brg;
+40:                BAUDCON = 0x00;
+41:                BAUDCONbits.BRG16 = 1;
+170E  86B8     BSF BAUDCON, 3, ACCESS
+42:                TXSTA   = 0b00100100;
+1710  0E24     MOVLW 0x24
+1712  6EAC     MOVWF TXSTA, ACCESS
+43:                RCSTA   = 0b10010000; 
+1714  0E90     MOVLW 0x90
+1716  6EAB     MOVWF RCSTA, ACCESS
+44:                brg = (unsigned short int)(64000000/baud_rate/4) - 1;
+1718  C014     MOVFF baud_rate, data_buf
+171A  F00A     NOP
+171C  C015     MOVFF 0x15, 0xB
+171E  F00B     NOP
+1720  C016     MOVFF 0x16, 0xC
+1722  F00C     NOP
+1724  C017     MOVFF 0x17, 0xD
+1726  F00D     NOP
+1728  0E00     MOVLW 0x0
+172A  6E06     MOVWF read_buf, ACCESS
+172C  0E90     MOVLW 0x90
+172E  6E07     MOVWF 0x7, ACCESS
+1730  0ED0     MOVLW 0xD0
+1732  6E08     MOVWF read_len, ACCESS
+1734  0E03     MOVLW 0x3
+1736  6E09     MOVWF 0x9, ACCESS
+1738  ECEB     CALL 0x15D6, 0
+173A  F00A     NOP
+173C  C006     MOVFF read_buf, 0x18
+173E  F018     NOP
+1740  C007     MOVFF 0x7, 0x19
+1742  F019     NOP
+1744  C008     MOVFF read_len, 0x1A
+1746  F01A     NOP
+1748  C009     MOVFF 0x9, 0x1B
+174A  F01B     NOP
+174C  C018     MOVFF 0x18, read_buf
+174E  F006     NOP
+1750  C019     MOVFF 0x19, 0x7
+1752  F007     NOP
+1754  C01A     MOVFF 0x1A, read_len
+1756  F008     NOP
+1758  C01B     MOVFF 0x1B, 0x9
+175A  F009     NOP
+175C  0E04     MOVLW 0x4
+175E  6E0A     MOVWF data_buf, ACCESS
+1760  0E00     MOVLW 0x0
+1762  6E0B     MOVWF 0xB, ACCESS
+1764  0E00     MOVLW 0x0
+1766  6E0C     MOVWF 0xC, ACCESS
+1768  0E00     MOVLW 0x0
+176A  6E0D     MOVWF 0xD, ACCESS
+176C  ECEB     CALL 0x15D6, 0
+176E  F00A     NOP
+1770  0EFF     MOVLW 0xFF
+1772  2406     ADDWF read_buf, W, ACCESS
+1774  6E1C     MOVWF brg, ACCESS
+1776  0EFF     MOVLW 0xFF
+1778  2007     ADDWFC 0x7, W, ACCESS
+177A  6E1D     MOVWF 0x1D, ACCESS
+45:                SPBRGH  = (unsigned char)(brg>>8);
+177C  501D     MOVF 0x1D, W, ACCESS
+177E  6EB0     MOVWF SPBRGH, ACCESS
+46:                SPBRG   = (unsigned char)(brg & 0xFF);
+1780  C01C     MOVFF brg, SPBRG
+1782  FFAF     NOP
+47:            }
+1784  0012     RETURN 0
+48:            
+49:            static void write(char data)
+18CA  6E06     MOVWF read_buf, ACCESS
+50:            {
+51:                while(!TXSTAbits.TRMT);
+18CC  EF68     GOTO 0x18D0
+18CE  F00C     NOP
+18D0  A2AC     BTFSS TXSTA, 1, ACCESS
+18D2  EF6D     GOTO 0x18DA
+18D4  F00C     NOP
+18D6  EF6F     GOTO 0x18DE
+18D8  F00C     NOP
+18DA  EF68     GOTO 0x18D0
+18DC  F00C     NOP
+18DE  EF71     GOTO 0x18E2
+18E0  F00C     NOP
+52:                TXREG = data;
+18E2  C006     MOVFF read_buf, TXREG
+18E4  FFAD     NOP
+53:            }
+18E6  0012     RETURN 0
+54:            
+55:            static void print(char *data_buf)
+149A  EF51     GOTO 0x14A2
+149C  F00A     NOP
+149E  EF51     GOTO 0x14A2
+14A0  F00A     NOP
+14A2  CF5E     MOVFF 0xF5E, WREG
+14A4  FFE8     NOP
+14A6  0A01     XORLW 0x1
+14A8  A4D8     BTFSS STATUS, 2, ACCESS
+14AA  EF59     GOTO 0x14B2
+14AC  F00A     NOP
+14AE  EF5B     GOTO 0x14B6
+14B0  F00A     NOP
+14B2  EF69     GOTO 0x14D2
+14B4  F00A     NOP
+14B6  CF5F     MOVFF 0xF5F, WREG
+14B8  FFE8     NOP
+14BA  0A01     XORLW 0x1
+14BC  B4D8     BTFSC STATUS, 2, ACCESS
+14BE  EF63     GOTO 0x14C6
+14C0  F00A     NOP
+14C2  EF65     GOTO 0x14CA
+14C4  F00A     NOP
+14C6  EF51     GOTO 0x14A2
+14C8  F00A     NOP
+14CA  EF69     GOTO 0x14D2
+14CC  F00A     NOP
+14CE  EF69     GOTO 0x14D2
+14D0  F00A     NOP
+56:            {
+57:                static char cnt = 0;
+58:                static char pp;
+59:                while(Serial.variable.send_status[buffer_select_A] == true && Serial.variable.send_status[buffer_select_B] == true);
+60:                if(Serial.variable.send_buffer_select == buffer_select_A)
+14D2  EE2F     LFSR 2, 0xF5C
+14D4  F05C     NOP
+14D6  50DF     MOVF INDF2, W, ACCESS
+14D8  A4D8     BTFSS STATUS, 2, ACCESS
+14DA  EF71     GOTO 0x14E2
+14DC  F00A     NOP
+14DE  EF73     GOTO 0x14E6
+14E0  F00A     NOP
+14E2  EF7A     GOTO 0x14F4
+14E4  F00A     NOP
+61:                {
+62:                    pp = Serial.variable.send_buffer_select;
+14E6  CF5C     MOVFF 0xF5C, pp
+14E8  F022     NOP
+63:                    Serial.variable.send_buffer_select = buffer_select_B;
+14EA  0E01     MOVLW 0x1
+14EC  CFE8     MOVFF WREG, 0xF5C
+14EE  FF5C     NOP
+64:                }
+14F0  EF81     GOTO 0x1502
+14F2  F00A     NOP
+65:                else
+14F4  CF5C     MOVFF 0xF5C, pp
+14F6  F022     NOP
+66:                {
+67:                   pp = Serial.variable.send_buffer_select;
+68:                   Serial.variable.send_buffer_select = buffer_select_A;   
+14F8  0E00     MOVLW 0x0
+14FA  CFE8     MOVFF WREG, 0xF5C
+14FC  FF5C     NOP
+14FE  EF81     GOTO 0x1502
+1500  F00A     NOP
+69:                }
+1502  0E00     MOVLW 0x0
+1504  6E23     MOVWF cnt, ACCESS
+70:                cnt = 0;
+71:                while(*data_buf != 0x00)
+1506  EFB6     GOTO 0x156C
+1508  F00A     NOP
+156C  C006     MOVFF read_buf, TBLPTR
+156E  FFF6     NOP
+1570  C007     MOVFF 0x7, TBLPTRH
+1572  FFF7     NOP
+1574  0E00     MOVLW 0x0
+1576  6EF8     MOVWF TBLPTRU, ACCESS
+1578  0E0F     MOVLW 0xF
+157A  64F7     CPFSGT TBLPTRH, ACCESS
+157C  D003     BRA 0x1584
+157E  0008     TBLRD*
+1580  50F5     MOVF TABLAT, W, ACCESS
+1582  D005     BRA 0x158E
+1584  CFF6     MOVFF TBLPTR, FSR0
+1586  FFE9     NOP
+1588  CFF7     MOVFF TBLPTRH, FSR0H
+158A  FFEA     NOP
+158C  50EF     MOVF INDF0, W, ACCESS
+158E  0900     IORLW 0x0
+1590  A4D8     BTFSS STATUS, 2, ACCESS
+1592  EFCD     GOTO 0x159A
+1594  F00A     NOP
+1596  EFCF     GOTO 0x159E
+1598  F00A     NOP
+159A  EF85     GOTO 0x150A
+159C  F00A     NOP
+159E  EFD1     GOTO 0x15A2
+15A0  F00A     NOP
+72:                {
+73:                    Serial.variable.send_buffer[pp][cnt++] = *data_buf++;
+150A  C006     MOVFF read_buf, TBLPTR
+150C  FFF6     NOP
+150E  C007     MOVFF 0x7, TBLPTRH
+1510  FFF7     NOP
+1512  0E00     MOVLW 0x0
+1514  6EF8     MOVWF TBLPTRU, ACCESS
+1516  5022     MOVF pp, W, ACCESS
+1518  0D41     MULLW 0x41
+151A  0E49     MOVLW 0x49
+151C  6E08     MOVWF read_len, ACCESS
+151E  0E0E     MOVLW 0xE
+1520  6E09     MOVWF 0x9, ACCESS
+1522  0E0C     MOVLW 0xC
+1524  2608     ADDWF read_len, F, ACCESS
+1526  0E00     MOVLW 0x0
+1528  2209     ADDWFC 0x9, F, ACCESS
+152A  50F3     MOVF PROD, W, ACCESS
+152C  2608     ADDWF read_len, F, ACCESS
+152E  50F4     MOVF PRODH, W, ACCESS
+1530  2209     ADDWFC 0x9, F, ACCESS
+1532  5023     MOVF cnt, W, ACCESS
+1534  0D01     MULLW 0x1
+1536  50F3     MOVF PROD, W, ACCESS
+1538  2608     ADDWF read_len, F, ACCESS
+153A  50F4     MOVF PRODH, W, ACCESS
+153C  2209     ADDWFC 0x9, F, ACCESS
+153E  0E85     MOVLW 0x85
+1540  2408     ADDWF read_len, W, ACCESS
+1542  6ED9     MOVWF FSR2, ACCESS
+1544  0E00     MOVLW 0x0
+1546  2009     ADDWFC 0x9, W, ACCESS
+1548  6EDA     MOVWF FSR2H, ACCESS
+154A  0E0F     MOVLW 0xF
+154C  64F7     CPFSGT TBLPTRH, ACCESS
+154E  D003     BRA 0x1556
+1550  0008     TBLRD*
+1552  50F5     MOVF TABLAT, W, ACCESS
+1554  D005     BRA 0x1560
+1556  CFF6     MOVFF TBLPTR, FSR0
+1558  FFE9     NOP
+155A  CFF7     MOVFF TBLPTRH, FSR0H
+155C  FFEA     NOP
+155E  50EF     MOVF INDF0, W, ACCESS
+1560  6EDF     MOVWF INDF2, ACCESS
+1562  4A06     INFSNZ read_buf, F, ACCESS
+1564  2A07     INCF 0x7, F, ACCESS
+1566  2A23     INCF cnt, F, ACCESS
+1568  EFB6     GOTO 0x156C
+156A  F00A     NOP
+74:                }
+75:                Serial.variable.send_data_length = cnt-1;
+15A2  C023     MOVFF cnt, read_len
+15A4  F008     NOP
+15A6  0EFF     MOVLW 0xFF
+15A8  2608     ADDWF read_len, F, ACCESS
+15AA  C008     MOVFF read_len, 0xF5D
+15AC  FF5D     NOP
+76:                Serial.variable.send_status[pp] = true;
+15AE  0E09     MOVLW 0x9
+15B0  6E08     MOVWF read_len, ACCESS
+15B2  0E01     MOVLW 0x1
+15B4  6E09     MOVWF 0x9, ACCESS
+15B6  5022     MOVF pp, W, ACCESS
+15B8  0D01     MULLW 0x1
+15BA  5008     MOVF read_len, W, ACCESS
+15BC  26F3     ADDWF PROD, F, ACCESS
+15BE  5009     MOVF 0x9, W, ACCESS
+15C0  22F4     ADDWFC PRODH, F, ACCESS
+15C2  0E55     MOVLW 0x55
+15C4  24F3     ADDWF PROD, W, ACCESS
+15C6  6ED9     MOVWF FSR2, ACCESS
+15C8  0E0E     MOVLW 0xE
+15CA  20F4     ADDWFC PRODH, W, ACCESS
+15CC  6EDA     MOVWF FSR2H, ACCESS
+15CE  0E01     MOVLW 0x1
+15D0  6EDF     MOVWF INDF2, ACCESS
+77:                PIE1bits.TXIE = 1;
+15D2  889D     BSF PIE1, 4, ACCESS
+78:                
+79:            }
+15D4  0012     RETURN 0
+80:            
+81:            static void println(char *data_buf)
+1802  C00A     MOVFF data_buf, read_buf
+1804  F006     NOP
+1806  C00B     MOVFF 0xB, 0x7
+1808  F007     NOP
+180A  EE2E     LFSR 2, 0xE4D
+180C  F04D     NOP
+180E  D802     RCALL 0x1814
+1810  EF14     GOTO 0x1828
+1812  F00C     NOP
+1814  0005     PUSH
+1816  6EFA     MOVWF PCLATH, ACCESS
+1818  50DE     MOVF POSTINC2, W, ACCESS
+181A  6EFD     MOVWF TOS, ACCESS
+181C  50DE     MOVF POSTINC2, W, ACCESS
+181E  6EFE     MOVWF TOSH, ACCESS
+1820  50F8     MOVF TBLPTRU, W, ACCESS
+1822  6EFF     MOVWF TOSU, ACCESS
+1824  50FA     MOVF PCLATH, W, ACCESS
+1826  0012     RETURN 0
+82:            {
+83:                Serial.print(data_buf);
+84:                Serial.write(0x0D);
+1828  EE2E     LFSR 2, 0xE4B
+182A  F04B     NOP
+182C  D802     RCALL 0x1832
+182E  EF24     GOTO 0x1848
+1830  F00C     NOP
+1832  0005     PUSH
+1834  6EFA     MOVWF PCLATH, ACCESS
+1836  50DE     MOVF POSTINC2, W, ACCESS
+1838  6EFD     MOVWF TOS, ACCESS
+183A  50DE     MOVF POSTINC2, W, ACCESS
+183C  6EFE     MOVWF TOSH, ACCESS
+183E  50F8     MOVF TBLPTRU, W, ACCESS
+1840  6EFF     MOVWF TOSU, ACCESS
+1842  50FA     MOVF PCLATH, W, ACCESS
+1844  0E0D     MOVLW 0xD
+1846  0012     RETURN 0
+85:                Serial.write(0x0A);
+1848  EE2E     LFSR 2, 0xE4B
+184A  F04B     NOP
+184C  D802     RCALL 0x1852
+184E  EF34     GOTO 0x1868
+1850  F00C     NOP
+1852  0005     PUSH
+1854  6EFA     MOVWF PCLATH, ACCESS
+1856  50DE     MOVF POSTINC2, W, ACCESS
+1858  6EFD     MOVWF TOS, ACCESS
+185A  50DE     MOVF POSTINC2, W, ACCESS
+185C  6EFE     MOVWF TOSH, ACCESS
+185E  50F8     MOVF TBLPTRU, W, ACCESS
+1860  6EFF     MOVWF TOSU, ACCESS
+1862  50FA     MOVF PCLATH, W, ACCESS
+1864  0E0A     MOVLW 0xA
+1866  0012     RETURN 0
+86:            }
+1868  0012     RETURN 0
+87:            
+88:            static int  available(void)
+186A  CED9     MOVFF 0xED9, WREG
+186C  FFE8     NOP
+186E  0A01     XORLW 0x1
+1870  A4D8     BTFSS STATUS, 2, ACCESS
+1872  EF3D     GOTO 0x187A
+1874  F00C     NOP
+1876  EF3F     GOTO 0x187E
+1878  F00C     NOP
+187A  EF4B     GOTO 0x1896
+187C  F00C     NOP
+89:            {
+90:                if(Serial.variable.read_status == true)
+91:                {
+92:                    return (int)Serial.variable.read_data_length + 1;
+187E  CED7     MOVFF 0xED7, read_len
+1880  F008     NOP
+1882  0E01     MOVLW 0x1
+1884  2408     ADDWF read_len, W, ACCESS
+1886  6E06     MOVWF read_buf, ACCESS
+1888  6A07     CLRF 0x7, ACCESS
+188A  0E00     MOVLW 0x0
+188C  2207     ADDWFC 0x7, F, ACCESS
+188E  EF4D     GOTO 0x189A
+1890  F00C     NOP
+1892  EF4D     GOTO 0x189A
+1894  F00C     NOP
+93:                }
+1896  6806     SETF read_buf, ACCESS
+1898  6807     SETF 0x7, ACCESS
+94:                return -1;
+95:            }
+189A  0012     RETURN 0
+96:            static char read(char *read_buf,char read_len)
+134E  EE2E     LFSR 2, 0xED9
+1350  F0D9     NOP
+1352  50DF     MOVF INDF2, W, ACCESS
+1354  B4D8     BTFSC STATUS, 2, ACCESS
+1356  EFAF     GOTO 0x135E
+1358  F009     NOP
+135A  EFB1     GOTO 0x1362
+135C  F009     NOP
+135E  EF4C     GOTO 0x1498
+1360  F00A     NOP
+1362  EE2E     LFSR 2, 0xED7
+1364  F0D7     NOP
+1366  5008     MOVF read_len, W, ACCESS
+1368  5CDE     SUBWF POSTINC2, W, ACCESS
+136A  B0D8     BTFSC STATUS, 0, ACCESS
+136C  EFBA     GOTO 0x1374
+136E  F009     NOP
+1370  EFBC     GOTO 0x1378
+1372  F009     NOP
+1374  EFC2     GOTO 0x1384
+1376  F009     NOP
+1378  EF4C     GOTO 0x1498
+137A  F00A     NOP
+97:            {
+98:                static char i,p;
+99:                if(Serial.variable.read_status == false || Serial.variable.read_data_length<read_len)
+100:               {
+101:                   return 0;
+137C  EF4C     GOTO 0x1498
+137E  F00A     NOP
+102:               }
+1380  EFC2     GOTO 0x1384
+1382  F009     NOP
+1384  BA9E     BTFSC PIR1, 5, ACCESS
+1386  EFC7     GOTO 0x138E
+1388  F009     NOP
+138A  EFC9     GOTO 0x1392
+138C  F009     NOP
+138E  EFC2     GOTO 0x1384
+1390  F009     NOP
+103:               while(PIR1bits.RCIF);
+104:               Serial.variable.read_data_length   = 0;
+1392  0E00     MOVLW 0x0
+1394  CFE8     MOVFF WREG, 0xED7
+1396  FED7     NOP
+105:               if(Serial.variable.read_buffer_select == buffer_select_A)
+1398  EE2E     LFSR 2, 0xED8
+139A  F0D8     NOP
+139C  50DF     MOVF INDF2, W, ACCESS
+139E  A4D8     BTFSS STATUS, 2, ACCESS
+13A0  EFD4     GOTO 0x13A8
+13A2  F009     NOP
+13A4  EFD6     GOTO 0x13AC
+13A6  F009     NOP
+13A8  EFED     GOTO 0x13DA
+13AA  F009     NOP
+106:               {
+107:                   if(buffer_over == true)
+13AC  0426     DECF buffer_over, W, ACCESS
+13AE  A4D8     BTFSS STATUS, 2, ACCESS
+13B0  EFDC     GOTO 0x13B8
+13B2  F009     NOP
+13B4  EFDE     GOTO 0x13BC
+13B6  F009     NOP
+13B8  EFE4     GOTO 0x13C8
+13BA  F009     NOP
+108:                   {
+109:                       buffer_over = false;
+13BC  0E00     MOVLW 0x0
+13BE  6E26     MOVWF buffer_over, ACCESS
+110:                       p = buffer_select_B;
+13C0  0E01     MOVLW 0x1
+13C2  6E20     MOVWF __pbssCOMRAM, ACCESS
+111:                   }
+13C4  EFE8     GOTO 0x13D0
+13C6  F009     NOP
+112:                   else
+13C8  0E00     MOVLW 0x0
+13CA  6E20     MOVWF __pbssCOMRAM, ACCESS
+13CC  EFE8     GOTO 0x13D0
+13CE  F009     NOP
+113:                   {
+114:                       p = buffer_select_A;
+115:                   }
+13D0  0E01     MOVLW 0x1
+13D2  CFE8     MOVFF WREG, 0xED8
+13D4  FED8     NOP
+116:                   Serial.variable.read_buffer_select = buffer_select_B;
+117:                   
+118:               }
+13D6  EF04     GOTO 0x1408
+13D8  F00A     NOP
+119:               else
+13DA  0426     DECF buffer_over, W, ACCESS
+13DC  A4D8     BTFSS STATUS, 2, ACCESS
+13DE  EFF3     GOTO 0x13E6
+13E0  F009     NOP
+13E2  EFF5     GOTO 0x13EA
+13E4  F009     NOP
+13E6  EFFB     GOTO 0x13F6
+13E8  F009     NOP
+120:               {
+121:                   if(buffer_over == true)
+122:                   {
+123:                       buffer_over = false;
+13EA  0E00     MOVLW 0x0
+13EC  6E26     MOVWF buffer_over, ACCESS
+124:                       p = buffer_select_A;
+13EE  0E00     MOVLW 0x0
+13F0  6E20     MOVWF __pbssCOMRAM, ACCESS
+125:                   }
+13F2  EFFF     GOTO 0x13FE
+13F4  F009     NOP
+126:                   else
+13F6  0E01     MOVLW 0x1
+13F8  6E20     MOVWF __pbssCOMRAM, ACCESS
+13FA  EFFF     GOTO 0x13FE
+13FC  F009     NOP
+127:                   {
+128:                       p = buffer_select_B;
+129:                   }
+13FE  0E00     MOVLW 0x0
+1400  CFE8     MOVFF WREG, 0xED8
+1402  FED8     NOP
+130:                   Serial.variable.read_buffer_select = buffer_select_A;
+131:                   p = buffer_select_B;
+1404  0E01     MOVLW 0x1
+1406  6E20     MOVWF __pbssCOMRAM, ACCESS
+132:               }
+1408  0E00     MOVLW 0x0
+140A  6E21     MOVWF i, ACCESS
+140C  EF41     GOTO 0x1482
+140E  F00A     NOP
+133:               
+134:               for(i=0;i<read_len;i++)
+135:               {
+136:                   *read_buf++ = Serial.variable.read_data[p][i]; 
+1410  5020     MOVF __pbssCOMRAM, W, ACCESS
+1412  0D41     MULLW 0x41
+1414  0E49     MOVLW 0x49
+1416  6E09     MOVWF 0x9, ACCESS
+1418  0E0E     MOVLW 0xE
+141A  6E0A     MOVWF data_buf, ACCESS
+141C  0E0C     MOVLW 0xC
+141E  2609     ADDWF 0x9, F, ACCESS
+1420  0E00     MOVLW 0x0
+1422  220A     ADDWFC data_buf, F, ACCESS
+1424  50F3     MOVF PROD, W, ACCESS
+1426  2609     ADDWF 0x9, F, ACCESS
+1428  50F4     MOVF PRODH, W, ACCESS
+142A  220A     ADDWFC data_buf, F, ACCESS
+142C  5021     MOVF i, W, ACCESS
+142E  0D01     MULLW 0x1
+1430  50F3     MOVF PROD, W, ACCESS
+1432  2409     ADDWF 0x9, W, ACCESS
+1434  6ED9     MOVWF FSR2, ACCESS
+1436  50F4     MOVF PRODH, W, ACCESS
+1438  200A     ADDWFC data_buf, W, ACCESS
+143A  6EDA     MOVWF FSR2H, ACCESS
+143C  C006     MOVFF read_buf, FSR1
+143E  FFE1     NOP
+1440  C007     MOVFF 0x7, FSR1H
+1442  FFE2     NOP
+1444  CFDF     MOVFF INDF2, INDF1
+1446  FFE7     NOP
+1448  4A06     INFSNZ read_buf, F, ACCESS
+144A  2A07     INCF 0x7, F, ACCESS
+137:                   Serial.variable.read_data[p][i] = 0x00;
+144C  5020     MOVF __pbssCOMRAM, W, ACCESS
+144E  0D41     MULLW 0x41
+1450  0E49     MOVLW 0x49
+1452  6E09     MOVWF 0x9, ACCESS
+1454  0E0E     MOVLW 0xE
+1456  6E0A     MOVWF data_buf, ACCESS
+1458  0E0C     MOVLW 0xC
+145A  2609     ADDWF 0x9, F, ACCESS
+145C  0E00     MOVLW 0x0
+145E  220A     ADDWFC data_buf, F, ACCESS
+1460  50F3     MOVF PROD, W, ACCESS
+1462  2609     ADDWF 0x9, F, ACCESS
+1464  50F4     MOVF PRODH, W, ACCESS
+1466  220A     ADDWFC data_buf, F, ACCESS
+1468  5021     MOVF i, W, ACCESS
+146A  0D01     MULLW 0x1
+146C  50F3     MOVF PROD, W, ACCESS
+146E  2409     ADDWF 0x9, W, ACCESS
+1470  6ED9     MOVWF FSR2, ACCESS
+1472  50F4     MOVF PRODH, W, ACCESS
+1474  200A     ADDWFC data_buf, W, ACCESS
+1476  6EDA     MOVWF FSR2H, ACCESS
+1478  0E00     MOVLW 0x0
+147A  6EDF     MOVWF INDF2, ACCESS
+138:               }
+147C  2A21     INCF i, F, ACCESS
+147E  EF41     GOTO 0x1482
+1480  F00A     NOP
+1482  5008     MOVF read_len, W, ACCESS
+1484  5C21     SUBWF i, W, ACCESS
+1486  A0D8     BTFSS STATUS, 0, ACCESS
+1488  EF48     GOTO 0x1490
+148A  F00A     NOP
+148C  EF4A     GOTO 0x1494
+148E  F00A     NOP
+1490  EF08     GOTO 0x1410
+1492  F00A     NOP
+1494  EF4C     GOTO 0x1498
+1496  F00A     NOP
+139:               return 1;
+140:           }
+1498  0012     RETURN 0
+141:           void _UART_INTERRUPT_TASK(void)
+1026  AA9E     BTFSS PIR1, 5, ACCESS
+1028  EF18     GOTO 0x1030
+102A  F008     NOP
+102C  EF1A     GOTO 0x1034
+102E  F008     NOP
+1030  EF7B     GOTO 0x10F6
+1032  F008     NOP
+142:           {
+143:               if(PIR1bits.RCIF)
+144:               {
+145:                   PIR1bits.RCIF = 0;
+1034  9A9E     BCF PIR1, 5, ACCESS
+146:                   Serial.variable.read_status = true;
+1036  0E01     MOVLW 0x1
+1038  CFE8     MOVFF WREG, 0xED9
+103A  FED9     NOP
+147:                   if(Serial.variable.read_data_length>(MAX_DATA_BUF-1))
+103C  EE2E     LFSR 2, 0xED7
+103E  F0D7     NOP
+1040  0E40     MOVLW 0x40
+1042  64DF     CPFSGT INDF2, ACCESS
+1044  EF26     GOTO 0x104C
+1046  F008     NOP
+1048  EF28     GOTO 0x1050
+104A  F008     NOP
+104C  EF45     GOTO 0x108A
+104E  F008     NOP
+148:                   {
+149:                       buffer_over = true;
+1050  0E01     MOVLW 0x1
+1052  6E26     MOVWF buffer_over, ACCESS
+150:                       buffer_over_cnt = Serial.variable.read_data_length;
+1054  CED7     MOVFF 0xED7, buffer_over_cnt
+1056  F025     NOP
+151:                       Serial.variable.read_data_length = 0;
+1058  0E00     MOVLW 0x0
+105A  CFE8     MOVFF WREG, 0xED7
+105C  FED7     NOP
+152:                       if(Serial.variable.read_buffer_select == buffer_select_A)
+105E  EE2E     LFSR 2, 0xED8
+1060  F0D8     NOP
+1062  50DF     MOVF INDF2, W, ACCESS
+1064  A4D8     BTFSS STATUS, 2, ACCESS
+1066  EF37     GOTO 0x106E
+1068  F008     NOP
+106A  EF39     GOTO 0x1072
+106C  F008     NOP
+106E  EF3E     GOTO 0x107C
+1070  F008     NOP
+153:                       {
+154:                           Serial.variable.read_buffer_select = buffer_select_B;
+1072  0E01     MOVLW 0x1
+1074  CFE8     MOVFF WREG, 0xED8
+1076  FED8     NOP
+155:                       }
+1078  EF45     GOTO 0x108A
+107A  F008     NOP
+156:                       else
+107C  0E00     MOVLW 0x0
+107E  CFE8     MOVFF WREG, 0xED8
+1080  FED8     NOP
+1082  EF45     GOTO 0x108A
+1084  F008     NOP
+157:                       {
+158:                           Serial.variable.read_buffer_select = buffer_select_A;
+159:                       }
+1086  EF45     GOTO 0x108A
+1088  F008     NOP
+160:                   }
+108A  EE2E     LFSR 2, 0xED8
+108C  F0D8     NOP
+108E  50DF     MOVF INDF2, W, ACCESS
+1090  A4D8     BTFSS STATUS, 2, ACCESS
+1092  EF4D     GOTO 0x109A
+1094  F008     NOP
+1096  EF4F     GOTO 0x109E
+1098  F008     NOP
+109A  EF62     GOTO 0x10C4
+109C  F008     NOP
+161:                   if(Serial.variable.read_buffer_select == buffer_select_A)
+162:                   {
+163:                       Serial.variable.read_data[buffer_select_A][Serial.variable.read_data_length++] = RCREG;
+109E  CED7     MOVFF 0xED7, __pcstackCOMRAM
+10A0  F001     NOP
+10A2  5001     MOVF __pcstackCOMRAM, W, ACCESS
+10A4  0D01     MULLW 0x1
+10A6  0E55     MOVLW 0x55
+10A8  24F3     ADDWF PROD, W, ACCESS
+10AA  6ED9     MOVWF FSR2, ACCESS
+10AC  0E0E     MOVLW 0xE
+10AE  20F4     ADDWFC PRODH, W, ACCESS
+10B0  6EDA     MOVWF FSR2H, ACCESS
+10B2  CFAE     MOVFF RCREG, INDF2
+10B4  FFDF     NOP
+10B6  CED7     MOVFF 0xED7, WREG
+10B8  FFE8     NOP
+10BA  0F01     ADDLW 0x1
+10BC  CFE8     MOVFF WREG, 0xED7
+10BE  FED7     NOP
+164:                   }
+10C0  EF7B     GOTO 0x10F6
+10C2  F008     NOP
+165:                   else
+10C4  CED7     MOVFF 0xED7, __pcstackCOMRAM
+10C6  F001     NOP
+10C8  5001     MOVF __pcstackCOMRAM, W, ACCESS
+10CA  0D01     MULLW 0x1
+10CC  0E41     MOVLW 0x41
+10CE  26F3     ADDWF PROD, F, ACCESS
+10D0  0E00     MOVLW 0x0
+10D2  22F4     ADDWFC PRODH, F, ACCESS
+10D4  0E55     MOVLW 0x55
+10D6  24F3     ADDWF PROD, W, ACCESS
+10D8  6ED9     MOVWF FSR2, ACCESS
+10DA  0E0E     MOVLW 0xE
+10DC  20F4     ADDWFC PRODH, W, ACCESS
+10DE  6EDA     MOVWF FSR2H, ACCESS
+10E0  CFAE     MOVFF RCREG, INDF2
+10E2  FFDF     NOP
+10E4  CED7     MOVFF 0xED7, WREG
+10E6  FFE8     NOP
+10E8  0F01     ADDLW 0x1
+10EA  CFE8     MOVFF WREG, 0xED7
+10EC  FED7     NOP
+10EE  EF7B     GOTO 0x10F6
+10F0  F008     NOP
+166:                   {
+167:                       Serial.variable.read_data[buffer_select_B][Serial.variable.read_data_length++] = RCREG;
+168:                   }
+10F2  EF7B     GOTO 0x10F6
+10F4  F008     NOP
+169:               }
+10F6  A89E     BTFSS PIR1, 4, ACCESS
+10F8  EF80     GOTO 0x1100
+10FA  F008     NOP
+10FC  EF82     GOTO 0x1104
+10FE  F008     NOP
+1100  EFF4     GOTO 0x11E8
+1102  F008     NOP
+1104  A89D     BTFSS PIE1, 4, ACCESS
+1106  EF87     GOTO 0x110E
+1108  F008     NOP
+110A  EF89     GOTO 0x1112
+110C  F008     NOP
+110E  EFF4     GOTO 0x11E8
+1110  F008     NOP
+1112  CF5E     MOVFF 0xF5E, WREG
+1114  FFE8     NOP
+1116  0A01     XORLW 0x1
+1118  B4D8     BTFSC STATUS, 2, ACCESS
+111A  EF91     GOTO 0x1122
+111C  F008     NOP
+111E  EF93     GOTO 0x1126
+1120  F008     NOP
+1122  EF9D     GOTO 0x113A
+1124  F008     NOP
+1126  CF5F     MOVFF 0xF5F, WREG
+1128  FFE8     NOP
+112A  0A01     XORLW 0x1
+112C  A4D8     BTFSS STATUS, 2, ACCESS
+112E  EF9B     GOTO 0x1136
+1130  F008     NOP
+1132  EF9D     GOTO 0x113A
+1134  F008     NOP
+1136  EFF4     GOTO 0x11E8
+1138  F008     NOP
+170:               
+171:               if((PIR1bits.TXIF && PIE1bits.TXIE) && (Serial.variable.send_status[buffer_select_A] == true || Serial.variable.send_status[buffer_select_B] == true))
+172:               {
+173:                   PIR1bits.TXIF = 0;
+113A  989E     BCF PIR1, 4, ACCESS
+174:                   if(send_cnt > Serial.variable.send_data_length)
+113C  EE2F     LFSR 2, 0xF5D
+113E  F05D     NOP
+1140  5024     MOVF send_cnt, W, ACCESS
+1142  5CDE     SUBWF POSTINC2, W, ACCESS
+1144  B0D8     BTFSC STATUS, 0, ACCESS
+1146  EFA7     GOTO 0x114E
+1148  F008     NOP
+114A  EFA9     GOTO 0x1152
+114C  F008     NOP
+114E  EFC4     GOTO 0x1188
+1150  F008     NOP
+175:                   {
+176:                       if(Serial.variable.send_buffer_select == buffer_select_A)
+1152  EE2F     LFSR 2, 0xF5C
+1154  F05C     NOP
+1156  50DF     MOVF INDF2, W, ACCESS
+1158  A4D8     BTFSS STATUS, 2, ACCESS
+115A  EFB1     GOTO 0x1162
+115C  F008     NOP
+115E  EFB3     GOTO 0x1166
+1160  F008     NOP
+1162  EFB8     GOTO 0x1170
+1164  F008     NOP
+177:                       {
+178:                           Serial.variable.send_status[buffer_select_A] = false;
+1166  0E00     MOVLW 0x0
+1168  CFE8     MOVFF WREG, 0xF5E
+116A  FF5E     NOP
+179:                       }
+116C  EFBB     GOTO 0x1176
+116E  F008     NOP
+180:                       else
+1170  0E00     MOVLW 0x0
+1172  CFE8     MOVFF WREG, 0xF5F
+1174  FF5F     NOP
+181:                       {
+182:                           Serial.variable.send_status[buffer_select_B] = false;
+183:                       }
+1176  0E00     MOVLW 0x0
+1178  CFE8     MOVFF WREG, 0xF5D
+117A  FF5D     NOP
+184:                       Serial.variable.send_data_length = 0;
+185:                       
+186:                       send_cnt = 0;
+117C  0E00     MOVLW 0x0
+117E  6E24     MOVWF send_cnt, ACCESS
+187:                       PIE1bits.TXIE = 0;
+1180  989D     BCF PIE1, 4, ACCESS
+188:                       PIR1bits.TXIF = 0;
+1182  989E     BCF PIR1, 4, ACCESS
+189:                   }
+1184  EFF4     GOTO 0x11E8
+1186  F008     NOP
+190:                   else if(Serial.variable.send_buffer_select == buffer_select_A)
+1188  EE2F     LFSR 2, 0xF5C
+118A  F05C     NOP
+118C  50DF     MOVF INDF2, W, ACCESS
+118E  A4D8     BTFSS STATUS, 2, ACCESS
+1190  EFCC     GOTO 0x1198
+1192  F008     NOP
+1194  EFCE     GOTO 0x119C
+1196  F008     NOP
+1198  EFDF     GOTO 0x11BE
+119A  F008     NOP
+191:                   {
+192:                       TXREG = Serial.variable.send_buffer[buffer_select_B][send_cnt++];
+119C  5024     MOVF send_cnt, W, ACCESS
+119E  0D01     MULLW 0x1
+11A0  0EC6     MOVLW 0xC6
+11A2  26F3     ADDWF PROD, F, ACCESS
+11A4  0E00     MOVLW 0x0
+11A6  22F4     ADDWFC PRODH, F, ACCESS
+11A8  0E55     MOVLW 0x55
+11AA  24F3     ADDWF PROD, W, ACCESS
+11AC  6ED9     MOVWF FSR2, ACCESS
+11AE  0E0E     MOVLW 0xE
+11B0  20F4     ADDWFC PRODH, W, ACCESS
+11B2  6EDA     MOVWF FSR2H, ACCESS
+11B4  50DF     MOVF INDF2, W, ACCESS
+11B6  6EAD     MOVWF TXREG, ACCESS
+11B8  2A24     INCF send_cnt, F, ACCESS
+193:                   }
+11BA  EFF4     GOTO 0x11E8
+11BC  F008     NOP
+194:                   else
+11BE  5024     MOVF send_cnt, W, ACCESS
+11C0  0D01     MULLW 0x1
+11C2  0E85     MOVLW 0x85
+11C4  26F3     ADDWF PROD, F, ACCESS
+11C6  0E00     MOVLW 0x0
+11C8  22F4     ADDWFC PRODH, F, ACCESS
+11CA  0E55     MOVLW 0x55
+11CC  24F3     ADDWF PROD, W, ACCESS
+11CE  6ED9     MOVWF FSR2, ACCESS
+11D0  0E0E     MOVLW 0xE
+11D2  20F4     ADDWFC PRODH, W, ACCESS
+11D4  6EDA     MOVWF FSR2H, ACCESS
+11D6  50DF     MOVF INDF2, W, ACCESS
+11D8  6EAD     MOVWF TXREG, ACCESS
+11DA  2A24     INCF send_cnt, F, ACCESS
+11DC  EFF4     GOTO 0x11E8
+11DE  F008     NOP
+195:                   {
+196:                       TXREG = Serial.variable.send_buffer[buffer_select_A][send_cnt++];
+197:                   }
+11E0  EFF4     GOTO 0x11E8
+11E2  F008     NOP
+11E4  EFF4     GOTO 0x11E8
+11E6  F008     NOP
+198:               }
+11E8  0012     RETURN 0
+199:           }
+---  C:/Program Files (x86)/Microchip/xc8/v2.00/pic/sources/c99/common/aldiv.c  -------------------------
+1:             // long signed unsigned division
+2:             
+3:             signed long int
+4:             #ifdef __PICC__
+5:             __aldiv(signed long int divisor, signed long int dividend)
+6:             #else
+7:             __aldiv(signed long int dividend, signed long int divisor)
+15D6  0E00     MOVLW 0x0
+15D8  6E0F     MOVWF sign, ACCESS
+8:             #endif
+9:             {
+10:            	signed long int	quotient;
+11:            	unsigned char	counter, sign;
+12:            
+13:            	sign = 0;
+14:            	if(divisor < 0) {
+15DA  BE0D     BTFSC 0xD, 7, ACCESS
+15DC  EFF4     GOTO 0x15E8
+15DE  F00A     NOP
+15E0  EFF2     GOTO 0x15E4
+15E2  F00A     NOP
+15E4  EF00     GOTO 0x1600
+15E6  F00B     NOP
+15:            		divisor = -divisor;
+15E8  1E0D     COMF 0xD, F, ACCESS
+15EA  1E0C     COMF 0xC, F, ACCESS
+15EC  1E0B     COMF 0xB, F, ACCESS
+15EE  6C0A     NEGF data_buf, ACCESS
+15F0  0E00     MOVLW 0x0
+15F2  220B     ADDWFC 0xB, F, ACCESS
+15F4  220C     ADDWFC 0xC, F, ACCESS
+15F6  220D     ADDWFC 0xD, F, ACCESS
+16:            		sign = 1;
+15F8  0E01     MOVLW 0x1
+15FA  6E0F     MOVWF sign, ACCESS
+15FC  EF00     GOTO 0x1600
+15FE  F00B     NOP
+17:            	}
+1600  BE09     BTFSC 0x9, 7, ACCESS
+1602  EF07     GOTO 0x160E
+1604  F00B     NOP
+1606  EF05     GOTO 0x160A
+1608  F00B     NOP
+160A  EF13     GOTO 0x1626
+160C  F00B     NOP
+18:            	if(dividend < 0) {
+19:            		dividend = -dividend;
+160E  1E09     COMF 0x9, F, ACCESS
+1610  1E08     COMF read_len, F, ACCESS
+1612  1E07     COMF 0x7, F, ACCESS
+1614  6C06     NEGF read_buf, ACCESS
+1616  0E00     MOVLW 0x0
+1618  2207     ADDWFC 0x7, F, ACCESS
+161A  2208     ADDWFC read_len, F, ACCESS
+161C  2209     ADDWFC 0x9, F, ACCESS
+20:            		sign ^= 1;
+161E  0E01     MOVLW 0x1
+1620  1A0F     XORWF sign, F, ACCESS
+1622  EF13     GOTO 0x1626
+1624  F00B     NOP
+21:            	}
+1626  0E00     MOVLW 0x0
+1628  6E10     MOVWF quotient, ACCESS
+162A  0E00     MOVLW 0x0
+162C  6E11     MOVWF 0x11, ACCESS
+162E  0E00     MOVLW 0x0
+1630  6E12     MOVWF 0x12, ACCESS
+1632  0E00     MOVLW 0x0
+1634  6E13     MOVWF 0x13, ACCESS
+22:            	quotient = 0;
+23:            	if(divisor != 0) {
+1636  500A     MOVF data_buf, W, ACCESS
+1638  100B     IORWF 0xB, W, ACCESS
+163A  100C     IORWF 0xC, W, ACCESS
+163C  100D     IORWF 0xD, W, ACCESS
+163E  B4D8     BTFSC STATUS, 2, ACCESS
+1640  EF24     GOTO 0x1648
+1642  F00B     NOP
+1644  EF26     GOTO 0x164C
+1646  F00B     NOP
+1648  EF68     GOTO 0x16D0
+164A  F00B     NOP
+24:            		counter = 1;
+164C  0E01     MOVLW 0x1
+164E  6E0E     MOVWF counter, ACCESS
+25:            		while((divisor & 0x80000000UL) == 0) {
+1650  EF32     GOTO 0x1664
+1652  F00B     NOP
+1664  AE0D     BTFSS 0xD, 7, ACCESS
+1666  EF37     GOTO 0x166E
+1668  F00B     NOP
+166A  EF39     GOTO 0x1672
+166C  F00B     NOP
+166E  EF2A     GOTO 0x1654
+1670  F00B     NOP
+1672  EF3D     GOTO 0x167A
+1674  F00B     NOP
+1676  EF3D     GOTO 0x167A
+1678  F00B     NOP
+26:            			divisor <<= 1;
+1654  90D8     BCF STATUS, 0, ACCESS
+1656  360A     RLCF data_buf, F, ACCESS
+1658  360B     RLCF 0xB, F, ACCESS
+165A  360C     RLCF 0xC, F, ACCESS
+165C  360D     RLCF 0xD, F, ACCESS
+27:            			counter++;
+165E  2A0E     INCF counter, F, ACCESS
+1660  EF32     GOTO 0x1664
+1662  F00B     NOP
+28:            		}
+29:            		do {
+167A  90D8     BCF STATUS, 0, ACCESS
+167C  3610     RLCF quotient, F, ACCESS
+167E  3611     RLCF 0x11, F, ACCESS
+1680  3612     RLCF 0x12, F, ACCESS
+1682  3613     RLCF 0x13, F, ACCESS
+30:            			quotient <<= 1;
+31:            			if((unsigned long)divisor <= (unsigned long)dividend) {
+1684  500A     MOVF data_buf, W, ACCESS
+1686  5C06     SUBWF read_buf, W, ACCESS
+1688  500B     MOVF 0xB, W, ACCESS
+168A  5807     SUBWFB 0x7, W, ACCESS
+168C  500C     MOVF 0xC, W, ACCESS
+168E  5808     SUBWFB read_len, W, ACCESS
+1690  500D     MOVF 0xD, W, ACCESS
+1692  5809     SUBWFB 0x9, W, ACCESS
+1694  A0D8     BTFSS STATUS, 0, ACCESS
+1696  EF4F     GOTO 0x169E
+1698  F00B     NOP
+169A  EF51     GOTO 0x16A2
+169C  F00B     NOP
+169E  EF5C     GOTO 0x16B8
+16A0  F00B     NOP
+32:            				dividend -= divisor;
+16A2  500A     MOVF data_buf, W, ACCESS
+16A4  5E06     SUBWF read_buf, F, ACCESS
+16A6  500B     MOVF 0xB, W, ACCESS
+16A8  5A07     SUBWFB 0x7, F, ACCESS
+16AA  500C     MOVF 0xC, W, ACCESS
+16AC  5A08     SUBWFB read_len, F, ACCESS
+16AE  500D     MOVF 0xD, W, ACCESS
+16B0  5A09     SUBWFB 0x9, F, ACCESS
+33:            				quotient |= 1;
+16B2  8010     BSF quotient, 0, ACCESS
+16B4  EF5C     GOTO 0x16B8
+16B6  F00B     NOP
+34:            			}
+16B8  90D8     BCF STATUS, 0, ACCESS
+16BA  320D     RRCF 0xD, F, ACCESS
+16BC  320C     RRCF 0xC, F, ACCESS
+16BE  320B     RRCF 0xB, F, ACCESS
+16C0  320A     RRCF data_buf, F, ACCESS
+35:            			*(unsigned long int *)&divisor >>= 1;
+36:            		} while(--counter != 0);
+16C2  2E0E     DECFSZ counter, F, ACCESS
+16C4  EF3D     GOTO 0x167A
+16C6  F00B     NOP
+16C8  EF68     GOTO 0x16D0
+16CA  F00B     NOP
+16CC  EF68     GOTO 0x16D0
+16CE  F00B     NOP
+37:            	}
+16D0  500F     MOVF sign, W, ACCESS
+16D2  B4D8     BTFSC STATUS, 2, ACCESS
+16D4  EF6E     GOTO 0x16DC
+16D6  F00B     NOP
+16D8  EF70     GOTO 0x16E0
+16DA  F00B     NOP
+16DC  EF7A     GOTO 0x16F4
+16DE  F00B     NOP
+38:            	if(sign)
+39:            		quotient = -quotient;
+16E0  1E13     COMF 0x13, F, ACCESS
+16E2  1E12     COMF 0x12, F, ACCESS
+16E4  1E11     COMF 0x11, F, ACCESS
+16E6  6C10     NEGF quotient, ACCESS
+16E8  0E00     MOVLW 0x0
+16EA  2211     ADDWFC 0x11, F, ACCESS
+16EC  2212     ADDWFC 0x12, F, ACCESS
+16EE  2213     ADDWFC 0x13, F, ACCESS
+16F0  EF7A     GOTO 0x16F4
+16F2  F00B     NOP
+40:            	return quotient;
+16F4  C010     MOVFF quotient, read_buf
+16F6  F006     NOP
+16F8  C011     MOVFF 0x11, 0x7
+16FA  F007     NOP
+16FC  C012     MOVFF 0x12, read_len
+16FE  F008     NOP
+1700  C013     MOVFF 0x13, 0x9
+1702  F009     NOP
+1704  EF84     GOTO 0x1708
+1706  F00B     NOP
+41:            }
+1708  0012     RETURN 0
